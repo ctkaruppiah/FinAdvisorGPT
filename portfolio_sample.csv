@@ -1,0 +1,5 @@
+Client Name,Asset Class,Instrument,Value (USD),Risk Level
+John Doe,Equity,Apple Inc (AAPL),45000,High
+John Doe,Bonds,US Treasury 10Y,30000,Low
+John Doe,Mutual Fund,Vanguard Total Market Index,25000,Medium
+John Doe,Cash,Cash Holdings,10000,Low

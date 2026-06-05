@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  # The UI and core processing node
+  terminal-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: finadvisor_terminal_container
+    ports:
+      - "8501:8501"
+    environment:
+      - DB_PATH=/data/finadvisor_secure_core.db
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=us-east-1
+      - EMAIL_PROVIDER=AWS_SES # or SENDGRID
+      - SENDGRID_API_KEY=${SENDGRID_API_KEY}
+    volumes:
+      - secure_db_vault:/data
+    restart: unless-stopped
+    networks:
+      - production_secure_network
+
+volumes:
+  secure_db_vault:
+    driver: local
+
+networks:
+  production_secure_network:
+    driver: bridge
